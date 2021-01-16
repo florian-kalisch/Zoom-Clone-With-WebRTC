@@ -10,6 +10,8 @@ const options = {
 const httpsServer = https.createServer(options, app)
 const io = require('socket.io')(httpsServer)
 
+var port = process.env.PORT || 80
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
@@ -32,6 +34,6 @@ io.on('connection', socket => {
   })
 })
 
-httpsServer.listen(443, function () {
+httpsServer.listen(port, function () {
     console.log("Example app listening at https://%s:%s", httpsServer.address().address, httpsServer.address().port);
   });
